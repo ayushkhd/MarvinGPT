@@ -1,0 +1,24 @@
+openapi: 3.0.1
+info:
+  title: Emotion Tracker API
+  description: An API for tracking and retrieving the human's emotion. This gives GPT emotional intelligence. The API will send the user's current emotions based on their facial features and tone analysis. The latest emotion can then be fetched using the `/get-latest-emotion` endpoint.
+  version: 'v1'
+servers:
+  - url: http://localhost:3000
+paths:
+  /get-latest-emotion:
+    get:
+      operationId: getLatestEmotion
+      summary: Retrieve the current emotional state of the human interacting with ChatGPT.
+      description: This endpoint returns the emotional state of the user. The user can be sad, happy, surprised, disgusted, fearful, and angry. It provides GPT with emotional intellegence and empathy.
+      responses:
+        "200":
+          description: The current emotional state of the user was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  emotion:
+                    type: string
+                    description: The latest emotion that was sent to the API.

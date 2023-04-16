@@ -25,7 +25,7 @@ class ChatGPT:
         return response
 
 # Create an instance of the ChatGPT class
-api_key = "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"
+api_key = ""
 model_engine = "text-davinci-002"
 chatbot = ChatGPT(api_key, model_engine)
 
