@@ -100,7 +100,7 @@
 # if __name__ == '__main__':
 #     app.run(port=4444)
 
-from flask import Flask, request, render_template_string
+from flask import Flask, request, jsonify
 from gpt import chat_gpt_request
 
 app = Flask(__name__)
