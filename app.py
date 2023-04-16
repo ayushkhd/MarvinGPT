@@ -101,6 +101,7 @@
 #     app.run(port=4444)
 
 from flask import Flask, request, render_template_string
+from gpt import generate_response
 app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
