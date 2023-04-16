@@ -16,17 +16,17 @@ function startVideo() {
 }
 
 async function sendEmotionToServer(emotion) {
-    const response = await fetch('http://localhost:3000/send-emotion', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ emotion })
-    });
-  
-    const result = await response.json();
-    console.log(result.message);
-  }
+  const response = await fetch('http://localhost:3000/send-emotion', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ emotion })
+  });
+
+  const result = await response.json();
+  console.log(result.message);
+}
 
 video.addEventListener('play', () => {
   const canvas = faceapi.createCanvasFromMedia(video)
@@ -38,7 +38,7 @@ video.addEventListener('play', () => {
     const resizedDetections = faceapi.resizeResults(detections, displaySize)
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
 
-    let emotions = faceapi.resizeResults(detections, displaySize)[0] ? faceapi.resizeResults(detections, displaySize)[0].expressions : {neutral: 0}
+    let emotions = faceapi.resizeResults(detections, displaySize)[0] ? faceapi.resizeResults(detections, displaySize)[0].expressions : { neutral: 0 }
 
     let max = -Infinity;
     let currEmotion = "neutral";
@@ -46,11 +46,11 @@ video.addEventListener('play', () => {
     console.log(emotions)
 
     for (const [key, value] of Object.entries(emotions)) {
-      if(value > max){
+      if (value > max) {
         max = value;
         currEmotion = key;
       }
-    }  
+    }
 
     sendEmotionToServer(currEmotion);
 
