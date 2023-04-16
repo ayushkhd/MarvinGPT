@@ -1,3 +1,31 @@
+from flask import Flask, request, jsonify
+from gpt import chat_gpt_request
+from emotion_detect import *
+
+app = Flask(__name__)
+
+@app.route('/process_input', methods=['POST'])
+def process_input():
+    data = request.get_json()
+    
+    image_url = data.get('image_url')
+    user_text = data.get('user_text')
+    
+    face_api_key = "your-face-api-key"
+    face_api_endpoint = "your-face-api-endpoint"
+    
+    emotion = detect_emotion(image_url, face_api_key, face_api_endpoint)
+    
+    chatgpt_response = chat_gpt_request(emotion, user_text)
+    
+    return jsonify({"response": chatgpt_response})
+
+
+
+
+
+
+
 # from flask import Flask, jsonify, request, Response
 # from flask_cors import CORS
 # import requests
@@ -99,24 +127,3 @@
 
 # if __name__ == '__main__':
 #     app.run(port=4444)
-
-from flask import Flask, request, jsonify
-from gpt import chat_gpt_request
-
-app = Flask(__name__)
-
-@app.route('/process_input', methods=['POST'])
-def process_input():
-    data = request.get_json()
-    
-    image_url = data.get('image_url')
-    user_text = data.get('user_text')
-    
-    face_api_key = "your-face-api-key"
-    face_api_endpoint = "your-face-api-endpoint"
-    
-    emotion = detect_emotion(image_url, face_api_key, face_api_endpoint)
-    
-    chatgpt_response = chat_gpt_request(emotion, user_text)
-    
-    return jsonify({"response": chatgpt_response})
