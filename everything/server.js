@@ -35,7 +35,7 @@ app.get("/.well-known/ai-plugin.json", (req, res) => {
     ai_plugin = {
         "schema_version": "v1",
         "name_for_human": "MarvinGPT EQ",
-        "name_for_model": "MarvinGPT Emotional Intelligence",
+        "name_for_model": "MarvinGPT_Emotional_Intelligence",
         "description_for_human": "Plugin for monitoring the human's emotions and responding in an empathetic manner.",
         "description_for_model": "Plugin for monitoring the human's emotions and responding in an empathetic manner.",
         "auth": {
